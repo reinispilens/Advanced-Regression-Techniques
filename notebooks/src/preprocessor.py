@@ -1,32 +1,9 @@
-import os
-import warnings
-from pathlib import Path
 
-import numpy as np
-import scipy as sp
-import pandas as pd
-
-# Preprocessing libraries
 from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder, RobustScaler, StandardScaler, MinMaxScaler, QuantileTransformer, PowerTransformer, PolynomialFeatures, StandardScaler
-from sklearn.feature_selection import SelectFromModel
-from sklearn.compose import TransformedTargetRegressor
 
-# Modeling libraries
-from sklearn.linear_model import LinearRegression, LassoCV
-
-# Read data
-data_dir = Path("/home/reinis/Documents/House Prices - Advanced Regression Techniques/data")
-train_df = pd.read_csv(data_dir / "train.csv")
-test_df = pd.read_csv(data_dir / "test.csv")
-
-# Separate target form predictors
-dfx = train_df.copy()
-label = dfx.pop("SalePrice")
-
-#redefine subsets according to preprocessing needs
 discrete = ['YearBuilt', 'YearRemodAdd','BsmtFullBath', 'BsmtHalfBath', 'FullBath', 'HalfBath',
             'BedroomAbvGr', 'KitchenAbvGr','TotRmsAbvGrd','Fireplaces', 'GarageYrBlt','GarageCars', 
             'MoSold', 'YrSold', 'OverallQual', 'OverallCond']
@@ -46,7 +23,7 @@ ordinal = ['LotShape', 'LandSlope', 'Utilities',   'ExterQual', 'ExterCond', 'Bs
            'Functional','FireplaceQu', 'GarageFinish', 'GarageQual','GarageCond','PavedDrive', 
            'PoolQC', 'Fence']
 
-# arrange categorical variable in categorical order to improve performance of linear models
+
 LotShape = ['Reg', 'IR1', 'IR2', 'IR3']
 LandSlope = ['Gtl', 'Mod', 'Sev']
 Utilities = ['AllPub', 'NoSewr', 'NoSeWa', 'ELO']

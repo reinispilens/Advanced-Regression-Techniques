@@ -1,45 +1,22 @@
 
-# General purpose
 import numpy as np
 import scipy as sp
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import os
-import joblib
-
-import math
-from itertools import zip_longest
-
-
-from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 from sklearn.feature_selection import SelectFromModel
 from sklearn.compose import TransformedTargetRegressor
-
-# Modeling libraries
-from sklearn.model_selection import RandomizedSearchCV, KFold, RepeatedKFold, ShuffleSplit, cross_validate, cross_val_predict, cross_val_score, train_test_split
+from sklearn.model_selection import KFold
 from sklearn.linear_model import LinearRegression, RidgeCV, LassoCV, ElasticNetCV
 from sklearn.compose import TransformedTargetRegressor
 from sklearn.ensemble import RandomForestRegressor, StackingRegressor
 from sklearn.svm import SVR
-from sklearn.kernel_ridge import KernelRidge
 import xgboost as xgb
-
-# Preprocessing libraries
-from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder, RobustScaler, StandardScaler, MinMaxScaler, QuantileTransformer, PowerTransformer, PolynomialFeatures, StandardScaler
-from sklearn.feature_selection import SelectFromModel
 from sklearn.compose import TransformedTargetRegressor
-
-# Modeling libraries
 from sklearn.linear_model import LinearRegression, LassoCV
 
 def preprocessor_test(preprocessor):
 
-    #l2_regulatization = sp.loguniform.rvs(1e-5,100, size=100) 
+
     l1_regulatization = [0.1, 0.4, 0.5, 0.55, 0.6, 0.7, 0.9, 0.95, 0.99, 1]
 
     inner_cv = KFold(n_splits=5, shuffle=True, random_state=42)
